@@ -427,3 +427,7 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Datos sensibles locales
+backend/PortafolioAPI/appsettings.Development.json
+backend/PortafolioAPI/portafolio.db
