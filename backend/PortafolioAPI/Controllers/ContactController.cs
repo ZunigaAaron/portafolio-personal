@@ -67,5 +67,24 @@ namespace PortafolioAPI.Controllers
 
             return NoContent();
         }
+
+        // ─────────────────────────────────────────
+        // DELETE /api/contact/{id}
+        // Elimina un mensaje
+        // ─────────────────────────────────────────
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var message = await _context.ContactMessages.FindAsync(id);
+
+            if (message == null)
+                return NotFound(new { message = "Mensaje no encontrado" });
+
+            _context.ContactMessages.Remove(message);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

@@ -26,8 +26,9 @@ namespace PortafolioAPI.Controllers
         {
             var profile = await _context.Profiles.FirstOrDefaultAsync();
 
+            // Si no existe, devuelve un perfil vacío en lugar de 404
             if (profile == null)
-                return NotFound(new { message = "Perfil no encontrado" });
+                return Ok(new Profile());
 
             return Ok(profile);
         }
@@ -67,11 +68,17 @@ namespace PortafolioAPI.Controllers
             existing.Role = profile.Role;
             existing.Bio = profile.Bio;
             existing.PhotoUrl = profile.PhotoUrl;
+            existing.Phone = profile.Phone;
+            existing.Location = profile.Location;
+            existing.LocationLat = profile.LocationLat;
+            existing.LocationLng = profile.LocationLng;
             existing.GitHubUrl = profile.GitHubUrl;
             existing.LinkedInUrl = profile.LinkedInUrl;
+            existing.TwitterUrl = profile.TwitterUrl;
+            existing.InstagramUrl = profile.InstagramUrl;
+            existing.YoutubeUrl = profile.YoutubeUrl;
             existing.CvUrl = profile.CvUrl;
             existing.IsAvailable = profile.IsAvailable;
-            existing.Location = profile.Location;
 
             await _context.SaveChangesAsync();
 
